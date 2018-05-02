@@ -1,0 +1,79 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/template/webtemplates.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+
+
+        <main class="main" role="main">
+            <!--wrap-->
+            <div class="wrap clearfix">
+                <!--row-->
+                <div class="row">
+                    <!--content-->
+                    <section class="content center full-width wow fadeInUp">
+                        <div class="modal container">
+                            <h3>Creer un Dossier</h3>
+
+                            <h:form class="form-horizontal">
+
+                                <div class="f-row">
+                                    <h:outputLabel class="col-md-4 control-label" value="Nom du dossier :" for="nom_dossier" />
+
+                                    <div class="col-md-4">
+                                        
+                                        <h:inputText id="nom_dossier" class="form-control" value="#{folder.nom_dossier}" required="true"
+                                                     requiredMessage="Veuillez entrer le nom du dossier"/>
+                                        <h:message for="nom_dossier" class="messageError" />
+                                        <br/>
+                                        <p:commandButton class="btn btn-primary" value="Ajouter "  action="#{folder.createDirectoryByLogin(utilisateurController.utilisateurConnecte.login,folder.nom_dossier)}"/> 
+                                    </div>
+                                </div>
+
+                            </h:form>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <div class="wrap clearfix">
+                <!--row-->
+                <div class="row">
+                    <!--content-->
+                    <section class="content center full-width wow fadeInUp">
+                        <div class="modal container" style="width: 70%;">
+                            <h3>Vos dossiers</h3>
+
+                            <h:form >
+                                <div class="center-block full-width">
+                                    <div class="col-md-12">
+
+                                    </div>
+                                    <div class="col-md-12">
+                                        <c:if test="#{folder.readDirectoriesFromDirectory(utilisateurController.utilisateurConnecte.login).toString()!= null}">
+                                            <p:dataList value="#{folder.readDirectoriesFromDirectory(utilisateurController.utilisateurConnecte.login)}" var="item" >
+                                                <p:column headerText="Dossiers" style="width: 100px; height: 40px" >
+                                                    <p:commandLink value="#{item}" action="#{folder.openDirectory()}"/>
+                                                </p:column>
+
+                                            </p:dataList>>
+                                        </c:if>
+                                    </div>
+
+                                </div>
+                            </h:form>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+
+
+    </ui:define>
+
+</ui:composition>
+
