@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title><ui:insert name="title" /></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="css/bootstrap.css" rel="stylesheet" />
+        <link href="css/style-recipe.css" rel="stylesheet" />  
+        <link rel="stylesheet" href="css/animate.css"/>
+        <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css" />
+        <link href="http://fonts.googleapis.com/css?family=Raleway:400,300,500,600,700,800" rel="stylesheet" />
+
+    </h:head>
+
+    <h:body>
+        <header class="head" role="banner">
+            <!--wrap-->
+            <div class="wrap clearfix">
+                <a href="faces/index.xhtml" title="SocialChef" class="logo"><h:graphicImage url="images/logoFile.png"></h:graphicImage> </a>
+
+                <nav class="main-nav" role="navigation" id="menu">
+                    <ul>
+                        <li class=""><a href="faces/index.xhtml" title="Home"><span>Accueil</span></a></li>
+                        <c:if test="#{utilisateurController.utilisateurConnecte.login != null}">
+                            <li class=""><a href="faces/dossier.xhtml" title="Dossier"><span>Vos Dossiers</span></a></li>
+                            <li class=""><a href="faces/fichier.xhtml" title="Fichiers"><span>Vos Fichiers</span></a></li>
+                            <li class=""><a href="faces/profil.xhtml" title="Dossier"><span>Profil</span></a>
+                                <ul>
+                                                <li><a href="animations.html" title="Animations"><h:form>
+                                        <h:commandLink value="Deconnexion" action="#{utilisateurController.deconnexion()}"> </h:commandLink>
+                                            </h:form>  </a></li>
+                                </ul>
+                            </li>
+
+                        </c:if>
+                    </ul>
+
+                </nav>
+            </div>
+            <!--//wrap-->
+        </header>
+        <ui:insert name="content" />    
+
+        <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js" ></script>
+        <script src="../js/bootstrap.min.js" ></script>
+
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="js/jquery.uniform.min.js"></script>
+        <script src="js/wow.min.js"></script>
+        <script src="js/jquery.slicknav.min.js"></script>
+        <script src="js/scripts.js"></script>
+        <script src="http://connect.facebook.net/fr_FR/all.js" ></script>
+
+        <script>
+
+            $(document).ready(function () {
+                $('#tableRecette').DataTable();
+            });
+        </script>
+        <script>
+            window.dynamicNumbersBound = false;
+            var wow = new WOW();
+            WOW.prototype.show = function (box) {
+                wow.applyStyle(box);
+
+                return box.className = "" + box.className + " " + wow.config.animateClass;
+            };
+            wow.init();
+
+            function hasClass(element, cls) {
+                return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
+            }
+
+            function bindDynamicNumbers() {
+                $('.dynamic-number').each(function () {
+                    var startNumber = $(this).text();
+                    var endNumber = $(this).data('dnumber');
+                    var dynamicNumberControl = $(this);
+
+                    $({numberValue: startNumber}).animate({numberValue: endNumber}, {
+                        duration: 4000,
+                        easing: 'swing',
+                        step: function () {
+                            $(dynamicNumberControl).text(Math.ceil(this.numberValue));
+                        }
+                    });
+                });
+            }
+
+        </script>
+
+    </h:body>
+</html>

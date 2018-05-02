@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="template/webtemplates.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:define name="title">
+        <h:outputText value="Home page"/>
+    </ui:define>
+
+    <ui:define name="content">
+        <main class="main" role="main">
+            <div class="intro">
+               
+                <!--wrap-->
+                <div class="wrap clearfix">
+                    <!--row-->
+                    <div class="row">
+                        <article class="three-fourth text wow zoomIn" data-wow-delay=".2s">
+                            <c:if test="#{utilisateurController.utilisateurConnecte.login != null}">
+                                <h1>Bienvenue à SupFile <h:outputText value="#{utilisateurController.utilisateurConnecte.login}"></h:outputText>!</h1>
+                                <p>Vous avez la possibilité d'ajouter vos fichiers, de consulter et de rechercher et de modifer et supprimer vos fichier et dossier !</p>
+                            </c:if>
+
+                            <c:if test="#{utilisateurController.utilisateurConnecte.login == null}">
+                                <h1>Bienvenue à SupFile!</h1>
+                                <p>Site web qui propose le stockage de vos fichier </p>
+                                <a href="faces/subscribe.xhtml" class="button white more medium">Nous rejoindre ?</a>
+                                <p>Vous êtes déjà inscrit? Cliquer <a href="faces/login.xhtml">ici</a> pour vous connecter.</p>
+                            </c:if>
+
+
+
+                        </article>
+
+                        
+                        <!--//search recipes widget-->
+                    </div>
+                    <!--//row-->
+                </div>
+                <!--//wrap-->
+            </div>
+           
+              
+        </main>
+
+    </ui:define>
+
+</ui:composition>
+

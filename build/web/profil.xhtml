@@ -1,0 +1,139 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/template/webtemplates.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="content">
+
+        <main class="main" role="main">
+            <!--wrap-->
+            <div class="wrap clearfix">
+                <section class="content">
+                    <!--row-->
+                    <div class="row">
+
+                        <!--profile left part-->
+                        <div class="my_account one-fourth wow fadeInLeft">
+                            <figure>
+                                <img src="images/avatar.jpg" alt="" />
+                            </figure>
+                            <div class="container">
+                                <h2><h:outputText value="#{utilisateurController.utilisateurConnecte.prenom}"> </h:outputText></h2> 
+                                <h:form>
+                                    <h:commandLink action="#{utilisateurController.deconnexion()}">
+                                        <h:outputText value="Deconnexion" />
+                                    </h:commandLink>
+                                </h:form>
+                            </div>
+                        </div>
+                        l
+
+                        <div class="three-fourth wow fadeInRight">
+                            <nav class="tabs">
+                                <ul>
+                                    <li class="active"><a href="#about" title="About me">Info</a></li>
+                                    <br/>
+                                    <br/>
+                                </ul>
+                            </nav>
+
+                            <div class="tab-content" id="about">
+
+
+                                <h:form class="form-horizontal">
+
+                                    <legend>Mettre à jour vos informations</legend><br/>
+                                    <br/>
+                                    <div class="form-group">
+                                        <h:outputLabel class="col-md-4 control-label" value="Nom  :" for="Nom" />
+
+                                        <div class="col-md-8">
+                                            <h:inputText id="Nom" class="form-control" value="#{utilisateurController.utilisateurConnecte.nom}" required="true" 
+                                                         requiredMessage="Veuillez entrer votre Nom" />
+                                            <h:message for="Nom" class="messageError" />
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <h:outputLabel class="col-md-4 control-label" value="Prenom  :" for="Prenom" />
+
+                                        <div class="col-md-8">
+                                            <h:inputText id="Prenom" class="form-control" value="#{utilisateurController.utilisateurConnecte.prenom}" required="true" 
+                                                         requiredMessage="Veuillez entrer votre prenom" />
+                                            <h:message for="prenom" class="messageError" />
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <h:outputLabel class="col-md-4 control-label" value="Login :" for="Login" />
+
+                                        <div class="col-md-8">
+                                            <h:inputText id="Login" class="form-control" value="#{utilisateurController.utilisateurConnecte.login}" disabled="true" 
+                                                         requiredMessage="Veuillez entrer votre Login" />
+                                            <h:message for="Login" class="messageError" />
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <h:outputLabel class="col-md-4 control-label" value="Email :" for="email" />
+
+                                        <div class="col-md-8">
+                                            <h:inputText id="email" class="form-control" value="#{utilisateurController.utilisateurConnecte.email}" required="true"
+                                                         requiredMessage="Veuillez entrer votre email"/>
+                                            <h:message for="email" class="messageError" />
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <h:outputLabel class="col-md-4 control-label" value="password :" for="password" />
+
+                                        <div class="col-md-8">
+                                            <h:inputSecret id="password" class="form-control" value="#{utilisateurController.password}" 
+                                                           requiredMessage="Veuillez entrer votre password"/>
+                                            <h:message for="password" class="messageError"/>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <h:outputLabel class="col-md-4 control-label" value="Code Postal:" for="CodePostal" />
+
+                                        <div class="col-md-8">
+                                            <h:inputText id="Code_Postal" class="form-control" value="#{utilisateurController.utilisateurConnecte.codePostal}" required="true" 
+                                                         requiredMessage="Veuillez entrer votre Code Postal" />
+                                            <h:message for="Code Postal" class="messageError" />
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <div class="col-md-8 col-md-offset-4">
+                                            <h:commandButton class="btn btn-primary" value="Mettre à jour" action="#{utilisateurController.update()}"/>                                    
+                                        </div>
+                                    </div>
+
+
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+    </ui:define>
+
+</ui:composition>
+
